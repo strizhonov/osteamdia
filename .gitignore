@@ -1,0 +1,6 @@
+.idea/*
+**/target/*
+**/*.iml
+service/searcher-service/src/main/resources/credentials.properties
+/lib
+.env

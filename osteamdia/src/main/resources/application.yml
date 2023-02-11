@@ -1,0 +1,45 @@
+spring:
+  main:
+    web-application-type: NONE
+  datasource:
+    url: jdbc:postgresql://${dbHost:localhost}:5432/osteamdiaDb
+    driverClassName: org.postgresql.Driver
+    username: osteamdiaUser
+    password: ${osteamdiaDbPassword}
+  cache:
+    cache-names: marketItemPage
+    caffeine:
+      spec: expireAfterWrite=24h,maximumSize=2000
+  jpa:
+    open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      jakarta:
+        persistence:
+          sharedCache:
+            mode: UNSPECIFIED
+logging:
+  level:
+    root: INFO
+    org.springframework: WARN
+
+url:
+  enhance-csgofloat: "https://api.csgofloat.com/"
+  steam-trade-history: "https://steamcommunity.com/market/myhistory/"
+  steam-price-history: "https://steamcommunity.com/market/listings/730/"
+
+steam:
+  sticker-names-with-comma: |- #single quote needs escape
+    Don''t Worry, I''m Pro
+    Hi, My Game Is
+    Rock, Paper, Scissors (Foil)
+    broky (Glitter, Champion) | Antwerp 2022
+    ropz (Glitter, Champion) | Antwerp 2022
+    Twistzz (Glitter, Champion) | Antwerp 2022
+    karrigan (Glitter, Champion) | Antwerp 2022
+    rain (Glitter, Champion) | Antwerp 2022
+    broky (Holo, Champion) | Antwerp 2022
+    ropz (Holo, Champion) | Antwerp 2022
+    Twistzz (Holo, Champion) | Antwerp 2022
+    karrigan (Holo, Champion) | Antwerp 2022
+    rain (Holo, Champion) | Antwerp 2022

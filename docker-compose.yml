@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  postgres_db:
+    image: postgres:latest
+    restart: always
+    hostname: postgres_db
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: osteamdiaDb
+      POSTGRES_USER: osteamdiaUser
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  osteamdia:
+    container_name: osteamdia_app
+    depends_on:
+      - postgres_db
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        STEAM_TOKEN: ${STEAM_TOKEN}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        DB_HOST: postgres_db
+    ports:
+      - "9020:9020"

@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3.0
+      author: strizhonov
+      changes:
+        - createSequence:
+            sequenceName: APPLIED_STICKER_STATE_SQ
+        - createTable:
+            tableName: APPLIED_STICKER_STATE
+            columns:
+              - column:
+                  name: ID
+                  type: integer
+                  constraints:
+                    primaryKey: true
+                  defaultValueComputed: nextval('APPLIED_STICKER_STATE_SQ')
+              - column:
+                  name: WEAR
+                  type: numeric
+              - column:
+                  name: PRICE_ON_TRADE_DATE
+                  type: numeric
+              - column:
+                  name: STICKER_ENTITY_ID
+                  type: integer
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_sticker_entity
+                    references: STICKER(ID)

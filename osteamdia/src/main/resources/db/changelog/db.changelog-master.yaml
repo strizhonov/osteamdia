@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/1.0-skin-create.yaml
+  - include:
+      file: db/changelog/2.0-sticker-create.yaml
+  - include:
+      file: db/changelog/3.0-applied-sticker-state-create.yaml
+  - include:
+      file: db/changelog/4.0-trade-history-entity-create.yaml
+  - include:
+      file: db/changelog/5.0-completed-trade-view-create.yaml

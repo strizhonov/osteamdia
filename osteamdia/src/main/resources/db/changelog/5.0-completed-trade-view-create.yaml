@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5.0
+      author: strizhonov
+      changes:
+        - createView:
+            selectQuery: >-
+              SELECT operation,
+                     skin_alias.skin_name,
+                     name_tag,
+                     skin_float,
+                     sell_price,
+                     history.price_on_trade_date,
+                     date_created,
+                     date_completed
+              FROM trade_history_entity history
+              LEFT JOIN skin skin_alias on history.skin_entity_id = skin_alias.id
+              WHERE (skin_alias.skin_name, skin_float) IN (
+                  SELECT skin_alias.skin_name, skin_float
+                  FROM trade_history_entity
+                  GROUP BY skin_alias.skin_name, skin_float
+                  HAVING COUNT(*) > 1
+              )
+              ORDER BY skin_alias.skin_name, skin_float, operation
+            viewName: completed_trade_view

@@ -1,0 +1,76 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.0
+      author: strizhonov
+      changes:
+        - createSequence:
+            sequenceName: TRADE_HISTORY_ENTITY_SQ
+        - createTable:
+            tableName: TRADE_HISTORY_ENTITY
+            columns:
+              - column:
+                  name: ID
+                  type: integer
+                  constraints:
+                    primaryKey: true
+                  defaultValueComputed: nextval('TRADE_HISTORY_ENTITY_SQ')
+              - column:
+                  name: NAME_TAG
+                  type: varchar(255)
+              - column:
+                  name: OPERATION
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: SKIN_FLOAT
+                  type: numeric
+              - column:
+                  name: SELL_PRICE
+                  type: numeric
+              - column:
+                  name: PRICE_ON_TRADE_DATE
+                  type: numeric
+              - column:
+                  name: DATE_COMPLETED
+                  type: timestamp
+              - column:
+                  name: DATE_CREATED
+                  type: timestamp
+              - column:
+                  name: SKIN_ENTITY_ID
+                  type: integer
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_skin_entity
+                    references: SKIN(ID)
+              - column:
+                  name: FIRST_STICKER_ID
+                  type: integer
+                  constraints:
+                    foreignKeyName: fk_1_sticker_entity
+                    references: APPLIED_STICKER_STATE(ID)
+              - column:
+                  name: SECOND_STICKER_ID
+                  type: integer
+                  constraints:
+                    foreignKeyName: fk_2_sticker_entity
+                    references: APPLIED_STICKER_STATE(ID)
+              - column:
+                  name: THIRD_STICKER_ID
+                  type: integer
+                  constraints:
+                    foreignKeyName: fk_3_sticker_entity
+                    references: APPLIED_STICKER_STATE(ID)
+              - column:
+                  name: FOURTH_STICKER_ID
+                  type: integer
+                  constraints:
+                    foreignKeyName: fk_4_sticker_entity
+                    references: APPLIED_STICKER_STATE(ID)
+              - column:
+                  name: FIFTH_STICKER_ID
+                  type: integer
+                  constraints:
+                    foreignKeyName: fk_5_sticker_entity
+                    references: APPLIED_STICKER_STATE(ID)

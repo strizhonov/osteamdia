@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2.0
+      author: strizhonov
+      changes:
+        - createSequence:
+            sequenceName: STICKER_SQ
+        - createTable:
+            tableName: STICKER
+            columns:
+              - column:
+                  name: ID
+                  type: integer
+                  constraints:
+                    primaryKey: true
+                  defaultValueComputed: nextval('STICKER_SQ')
+              - column:
+                  name: NAME
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
